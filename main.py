@@ -1,3 +1,4 @@
+###
 import random
 import time
 import numpy as np
@@ -17,3 +18,4 @@ plt.scatter(xc[0:], yc[0:], c='b', label = 'Customer') # Customer
 plt.scatter(xf[0:], yf[0:], c='r', marker='s', label = 'Facility') # Facility
 plt.legend()
 plt.show()
+
