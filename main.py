@@ -19,3 +19,7 @@ plt.scatter(xf[0:], yf[0:], c='r', marker='s', label = 'Facility') # Facility
 plt.legend()
 plt.show()
 
+print("Bonjour Sohalia")
+
+
+
