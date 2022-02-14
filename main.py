@@ -22,5 +22,5 @@ plt.show()
 print("Bonjour Sohalia")
 print("Bonjour Valentine")
 print("Bonjour Rayan")
-
+print('Salut')
 
