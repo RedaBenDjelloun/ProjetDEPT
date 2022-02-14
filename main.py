@@ -20,6 +20,7 @@ plt.legend()
 plt.show()
 
 print("Bonjour Sohalia")
+print("Bonjour Valentine")
 
 
 
