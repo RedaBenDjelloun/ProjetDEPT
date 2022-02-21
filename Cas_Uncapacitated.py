@@ -1,4 +1,4 @@
-###
+### #V205 Bureau encadrant
 import time
 
 import gurobipy
@@ -101,4 +101,7 @@ def uncap2():
     plt.scatter(xc[0:], yc[0:], c='b', label='Clients')
     plt.scatter(xf[0:], yf[0:], c='r', marker='s', label='Sites potentiels')
     plt.legend()
-    plt.show()
+    plt.show(
+
+
+print("Test Git Leo")
