@@ -63,9 +63,9 @@ for s in range(len(Si)):
         Delta[s][i] = (6378137 / 1000) * np.arccos(
             np.sin(phiA) * np.sin(phiB) + np.cos(phiA) * np.cos(phiB) * np.cos(Dlambda))
 
-D = [i for i in range(d)]
+D = [i for i in range(d)] #Clients
 
-S = [i for i in range(s)]
+S = [i for i in range(s)] #Sites potentiels
 h = {d: 100000 for d in D}
 A = [(d, s) for d in D for s in S]  # 2-D cartesian product
 f = {s: 100 for s in S}
@@ -75,15 +75,16 @@ from gurobipy import Model, GRB, quicksum
 
 mdl = gurobipy.Model('UFLP')
 
+#Déclaration des variables
 x = mdl.addVars(S, vtype=GRB.BINARY)
 y = mdl.addVars(A, vtype=GRB.CONTINUOUS)
 q = mdl.addVars(A, vtype=GRB.CONTINUOUS)
 
-
+#Fonction objectif
 mdl.ModelSense = GRB.MINIMIZE # Minimisation model
 mdl.setObjective(quicksum(f[s]*x[s] for s in S) + quicksum(h[d]*delta[d,s]*y[d,s] for d,s in A)) + quicksum(q[d,s] for d,s in A) # Cost Function
 
-
+#Différentes contraintes
 mdl.addConstrs(quicksum(y[d,s] for s in S) <= s for d in D)
 mdl.addConstrs(y[d,s] <= x[d] for d,s in A)
 mdl.addConstrs(quicksum(q[d,s] for s in S) == h[d] for d in D)
@@ -93,6 +94,7 @@ mdl.optimize()
 
 assignment = [a for a in A if y[a].X > 0.0]
 
+#Permet de plot la carte dans le main
 def uncap2():
     for i, j in assignment:
         plt.plot([xc[i], xf[j]], [yc[i], yf[j]], c='g', zorder=0)
